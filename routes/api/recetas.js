@@ -44,4 +44,20 @@ router.post('/',(req,res,next)=>{
     res.status(200).json(newRecetas);
 });
 
+
+router.put('/',(req,res,next)=>{
+    var id= req.params.id;
+    var modifiedReceta ={};
+    var originalReceta ={};
+    recetasCollection=recetasCollection.map(e, i)=>{
+        if(e.id === id){
+            originalReceta = Object.assign({}, e);
+            return modifiedReceta = Object.assign({},e, req.body);
+        }
+        return e;
+    };
+    res.status(200).json({o: originalReceta, m: modifiedReceta});
+});
+
+
 module.exports = router;
