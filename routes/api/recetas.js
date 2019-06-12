@@ -33,4 +33,15 @@ router.get('/',(req,res,next)=>{
     res.status(200).json(recetasCollection);    
 });
 
+router.post('/',(req,res,next)=>{
+    var newRecetas= Object.assign(
+        {}
+        recetasStruct,
+        {id:uuid()},
+        req.body
+    );
+    recetasCollection.push(newRecetas);
+    res.status(200).json(newRecetas);
+});
+
 module.exports = router;
